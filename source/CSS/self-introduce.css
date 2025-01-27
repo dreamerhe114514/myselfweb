@@ -1,0 +1,40 @@
+/* 右侧内容区域 */
+.right-content {
+    margin-left: 300px; /* 与侧边栏宽度一致 */
+    padding: 30px;
+    background: rgba(40, 40, 40, 0.9); /* 背景颜色 */
+    min-height: 100vh; /* 确保高度占满屏幕 */
+}
+
+/* 网格布局容器 */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行两个区域 */
+    gap: 20px; /* 区域之间的间距 */
+}
+
+/* 网格项 */
+.grid-item {
+    background: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px); /* 悬浮时上移 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.grid-item h2 {
+    font-size: 1.5rem;
+    color: #02fff2; /* 主题色 */
+    margin-bottom: 10px;
+}
+
+.grid-item p {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+}

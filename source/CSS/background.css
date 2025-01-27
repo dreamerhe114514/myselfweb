@@ -1,0 +1,6 @@
+/* 背景图样式（如果有特殊需求可以在这里写） */
+/* 例如：调整背景图的位置或大小 */
+body {
+    background-position: center;
+    background-size: cover;
+}

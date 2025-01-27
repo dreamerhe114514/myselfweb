@@ -1,0 +1,38 @@
+/* 导航栏容器 */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(51, 51, 51, 0.9); /* 半透明背景 */
+    border-radius: 25px; /* 整体椭圆形状 */
+    padding: 10px 20px; /* 内边距 */
+    backdrop-filter: blur(10px); /* 背景模糊效果 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 阴影 */
+    display: inline-block; /* 让导航栏宽度自适应内容 */
+}
+
+/* 导航项 */
+li {
+    float: left;
+    margin: 0 10px; /* 导航项之间的间距 */
+}
+
+/* 导航链接 */
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 20px; /* 椭圆形状 */
+    transition: all 0.3s ease; /* 平滑过渡 */
+}
+
+/* 鼠标悬浮效果 */
+li a:hover {
+    background-color: #02fff2; /* 鲜明的悬浮背景色 */
+    color: #333; /* 悬浮时文字颜色 */
+    transform: scale(1.1); /* 悬浮时放大 */
+    box-shadow: 0 4px 10px rgba(2, 255, 242, 0.3); /* 悬浮时阴影 */
+}

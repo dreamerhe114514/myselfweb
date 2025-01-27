@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何星梦 | 全栈开发者</title>
+    <link rel="stylesheet" href="https://jsd.cdn.sinzmise.top/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/parallax-js/3.1.0/parallax.min.css">
+    <link rel="preload" href="https://jsd2.dreamerhe.cn/gh/dreamerhe114514/picx-images-hosting@master/BlogANDdailypic/dreamerhebg.3uuxv858kh.webp" as="image" importance="high">
+    <style>
+        :root {
+            --primary: #02fff2;
+            --secondary: #7b61ff;
+            --glass: rgba(255, 255, 255, 0.08);
+            --neon-glow: 0 0 15px var(--primary), 0 0 30px var(--secondary);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MoonStarsKai-Bold', 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            background: 
+                linear-gradient(45deg, #1a1a2e, #16213e),
+                url('https://jsd2.dreamerhe.cn/gh/dreamerhe114514/picx-images-hosting@master/BlogANDdailypic/dreamerhebg.3uuxv858kh.webp');
+            background-blend-mode: multiply;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
+            z-index: -1;
+        }
+
+        /* 加载动画 */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #16213e;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOut 1s 2s forwards;
+        }
+
+        .loader::after {
+            content: '';
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* 动态背景 */
+        #particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 导航系统 */
+        .nebula-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            display: flex;
+            gap: 30px;
+            z-index: 1000;
+            transition: 0.4s;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .nebula-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nebula-nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+            opacity: 0;
+            z-index: -1;
+            transition: 0.3s;
+        }
+
+        .nebula-nav a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .nebula-nav a:hover::before {
+            opacity: 1;
+        }
+
+        /* 主内容区 */
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .holographic-avatar {
+            width: 220px;
+            height: 220px;
+            margin: 100px auto 30px;
+            border-radius: 50%;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            cursor: pointer;
+            filter: drop-shadow(0 0 30px var(--primary));
+        }
+
+        .holographic-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            filter: blur(20px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .holographic-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .cyber-title {
+            text-align: center;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: neon-glow 2s ease-in-out infinite alternate;
+            margin-bottom: 40px;
+        }
+
+        /* 博主宣言 */
+        .cyber-statement {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            background: linear-gradient(145deg, rgba(43, 26, 78, 0.6), rgba(26, 26, 60, 0.4));
+            border: 1px solid rgba(255,255,255,0.2);
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .statement-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+            border-radius: 22px;
+            filter: blur(30px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: gradientShift 8s infinite alternate;
+        }
+
+        .statement-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .statement-content h2 {
+            font-size: 2.2rem;
+            margin: 1rem 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .statement-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin: 1.5rem 0;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .signature {
+            font-family: cursive;
+            color: var(--primary);
+            margin-top: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .statement-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+
+        /* 卡片系统 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 5%;
+            perspective: 1000px;
+        }
+
+        .hologram-card {
+            padding: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(var(--primary), var(--secondary), var(--primary));
+            animation: rotate 4s linear infinite;
+            opacity: 0.1;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 技能条 */
+        .skill-bars {
+            margin-top: 20px;
+        }
+
+        .bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hologram-card:hover .bar::after {
+            width: var(--width);
+        }
+
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* 波浪分隔 */
+        .wave-divider {
+            width: 100%;
+            height: 100px;
+            margin: 50px 0;
+            background: linear-gradient(to right, var(--primary) 20%, var(--secondary) 80%);
+            -webkit-mask: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 70 Q 25 50, 50 70 Q 75 90, 100 70 L 100 100 L 0 100 Z" fill="white"/></svg>');
+            mask: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 70 Q 25 50, 50 70 Q 75 90, 100 70 L 100 100 L 0 100 Z" fill="white"/></svg>');
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            animation: wave 10s linear infinite;
+        }
+
+        /* 动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes neon-glow {
+            from { text-shadow: var(--neon-glow); }
+            to { text-shadow: 0 0 30px var(--primary), 0 0 50px var(--secondary); }
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            body { background-attachment: scroll; }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-size: auto 150%;
+                background-position: 70% center;
+            }
+            .cyber-statement {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+            .statement-content h2 { font-size: 1.8rem; }
+            .statement-content p { font-size: 1rem; }
+            .cyber-title { font-size: 2.5rem; }
+            .nebula-nav { padding: 10px 20px; gap: 20px; }
+            .holographic-avatar { width: 180px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <canvas id="particles"></canvas>
+    <div class="grid-overlay"></div>
+
+    <nav class="nebula-nav">
+        <a href="./index.html"><i class="fas fa-home"></i> 主页</a>
+        <a href="./about.html"><i class="fas fa-user-astronaut"></i> 关于</a>
+        <a href="./website.html"><i class="fas fa-rocket"></i> 项目</a>
+    </nav>
+
+    <div class="container">
+        <div class="holographic-avatar">
+            <img src="https://jsd2.dreamerhe.cn/gh/dreamerhe114514/picx-images-hosting/tx.1seyrn6g84.webp" alt="全息头像">
+        </div>
+
+        <h1 class="cyber-title">何星梦</h1>
+
+        <div class="cyber-statement">
+            <div class="statement-glow"></div>
+            <div class="statement-content">
+                <i class="fas fa-quote-left statement-icon"></i>
+                <h2>代码即诗 · 创造永恒</h2>
+                <p>在0与1的宇宙中寻找美学真谛<br>
+                   用前沿技术铸造数字艺术品<br>
+                   让每个字节都闪耀智慧光芒</p>
+                <div class="signature">—— HeXingMeng ——</div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="hologram-card">
+                <i class="fas fa-code card-icon"></i>
+                <h2>技术栈</h2>
+                <p>HTML5 · CSS3 · JavaScript<br>
+                   Python · C · React · Node.js</p>
+                <div class="skill-bars">
+                    <div class="bar" style="--width: 90%">前端开发</div>
+                    <div class="bar" style="--width: 75%">后端开发</div>
+                    <div class="bar" style="--width: 80%">UI设计</div>
+                </div>
+            </div>
+
+            <div class="hologram-card">
+                <i class="fas fa-project-diagram card-icon"></i>
+                <h2>代表作</h2>
+                <ul class="project-list">
+                    <li>个人博客系统</li>
+                    <li>游戏推荐平台</li>
+                    <li>AI学习助手</li>
+                </ul>
+            </div>
+
+            <div class="hologram-card">
+                <i class="fas fa-share-alt card-icon"></i>
+                <h2>连接我</h2>
+                <div class="social-links">
+                    <a href="#" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wave-divider"></div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2020 - 编程启蒙</h3>
+                <p>开启Python学习之旅，完成首个命令行游戏</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2021 - 前端精通</h3>
+                <p>掌握现代Web开发技术，构建个人门户网站</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2022 - 全栈突破</h3>
+                <p>研发Node.js+React全栈博客系统</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax-js/3.1.0/parallax.min.js"></script>
+    <script>
+        // 粒子系统
+        particlesJS('particles', {
+            particles: {
+                number: { value: 100 },
+                color: { value: ['#02fff2', '#7b61ff'] },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            }
+        });
+
+        // 移动端适配
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.body.style.backgroundAttachment = 'scroll';
+        }
+
+        // 视差效果
+        new Parallax(document.getElementById('scene'));
+
+        // 主题切换
+        let isDark = true;
+        document.addEventListener('dblclick', () => {
+            isDark = !isDark;
+            document.body.style.background = isDark 
+                ? 'linear-gradient(45deg, #1a1a2e, #16213e)'
+                : 'linear-gradient(45deg, #f0f4ff, #ffffff)';
+        });
+
+        // 动态调整移动端背景
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                document.body.style.backgroundSize = 'auto 150%';
+                document.body.style.backgroundPosition = '70% center';
+            }
+        });
+    </script>
+</body>
+</html>

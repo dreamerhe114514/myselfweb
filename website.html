@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何星梦的网站展示</title>
+    <link rel="stylesheet" type="text/css" href="source/CSS/styles.css">
+    <link rel="stylesheet" href="https://jsd.cdn.sinzmise.top/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'MoonStarsKai-Bold', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://jsd2.dreamerhe.cn/gh/dreamerhe114514/picx-images-hosting@master/BlogANDdailypic/dreamerhebg.3uuxv858kh.webp') no-repeat center center/cover;
+            background-attachment: fixed;
+            color: #fff;
+        }
+        /* 侧边栏预留区域 */
+        /*
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background: rgba(40, 40, 40, 0.9);
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        */
+
+        /* 右侧内容区域 */
+        .right-content {
+            margin-left: 0; /* 如果启用侧边栏，改为 margin-left: 300px; */
+            padding: 20px;
+        }
+
+        /* 网站展示区域 */
+        .website-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 每行两个框框 */
+            gap: 20px; /* 框框之间的间距 */
+        }
+
+        .website-box {
+            background: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .website-box:hover {
+            transform: translateY(-5px); /* 悬浮时上移 */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .website-box h2 {
+            font-size: 2rem;
+            color: #02fff2; /* 主题色 */
+            margin-bottom: 10px;
+        }
+
+        .website-box p {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .website-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #02fff2;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .website-box a:hover {
+            background: #00ccbb; /* 悬浮时背景颜色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏预留区域 -->
+    <!--
+    <div class="sidebar">
+        <h2>侧边栏内容</h2>
+        <p>这里是侧边栏的内容。</p>
+    </div>
+    -->
+    <nav class="nebula-nav">
+        <a href="./index.html">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="./about.html">
+            <i class="fas fa-user-astronaut"></i>
+            <span>关于我</span>
+        </a>
+        <a href="./website.html">
+            <i class="fas fa-rocket"></i>
+            <span>我的网站</span>
+        </a>
+    </nav>
+    <!-- 右侧内容区域 -->
+    <div class="right-content">
+        <!-- 网站展示区域 -->
+        <div class="website-section">
+            <div class="website-box">
+                <h2>个人博客</h2>
+                <p>这是我的个人博客，记录了我的学习和生活经验。</p>
+                <a href="https://example.com" target="_blank">点我前往</a>
+            </div>
+            <div class="website-box">
+                <h2>项目展示</h2>
+                <p>这里展示了我开发的一些项目，欢迎查看。</p>
+                <a href="https://example.com" target="_blank">点我前往</a>
+            </div>
+            <div class="website-box">
+                <h2>游戏推荐</h2>
+                <p>我喜欢的游戏推荐列表，快来一起玩吧！</p>
+                <a href="https://example.com" target="_blank">点我前往</a>
+            </div>
+            <div class="website-box">
+                <h2>技术分享</h2>
+                <p>这里分享一些编程技巧和技术心得。</p>
+                <a href="https://example.com" target="_blank">点我前往</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
